@@ -1,26 +1,18 @@
-# Forumo Web (React + Vite + Tailwind + RTK)
+# Forumo Backend (MVP)
 
-A clean, production-ready web frontend wired to your Node/Express backend.
+Quick start:
+1. `cp .env.example .env` and adjust values.
+2. `npm install`
+3. Start MongoDB locally or use docker-compose.
+4. `npm run dev`
 
-## Quick start
-```bash
-npm install
-cp .env.example .env   # set VITE_API_BASE_URL
-npm run dev
-```
+Seed categories: `npm run seed`
 
-## Expected backend endpoints
-- `POST /api/auth/register` → { user, token }
-- `POST /api/auth/login` → { user, token }
-- `GET /api/auth/me` → user
-- `GET /api/products` → array or { items: [] }
-- `GET /api/products/:id` → product
-- `POST /api/products` → product (auth: seller)
-- `POST /api/orders` → order
-- `GET /api/orders/my` → my orders
+Key endpoints:
+- `POST /api/auth/register` `POST /api/auth/login`
+- `GET /api/products` `POST /api/products` (seller/admin)
+- `POST /api/orders` `GET /api/orders/me`
+- `POST /api/escrow/intent` `POST /api/escrow/confirm-delivery`
+- `POST /api/reviews`
 
-## Notes
-- Minimal UI with Tailwind, easy to re-skin.
-- JWT is stored in localStorage and attached via axios interceptor.
-- Cart is persisted to localStorage.
-- Protected routes gate Checkout/Orders/Profile/Add Product.
+Sockets: join a room with `join(conversationId)` and emit `message` events.
